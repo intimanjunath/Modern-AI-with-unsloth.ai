@@ -16,26 +16,26 @@ I have fine-tune a variety of open-weight LLMs using Unsloth AI for different sp
 
 ---
 ## Part C: Reinforcement Learning with Preference Data (DPO)
-**Model:** SmolLM2‑135M  
-📄 [Open in Colab](https://colab.research.google.com/drive/1EVHl7NZfvc0Hv2kl1bZ7ZDnbEY2F2LI6?usp=sharing)
+- **Model:** SmolLM2‑135M  
+- 📄 [Open in Colab](https://colab.research.google.com/drive/1EVHl7NZfvc0Hv2kl1bZ7ZDnbEY2F2LI6?usp=sharing)
 
 Fine-tune **SmolLM2‑135M** with **Direct Preference Optimization (DPO)** on a small math preference dataset containing `prompt`, `chosen`, and `rejected` answers. LoRA adapters (rank 16) are attached to attention and MLP layers, and `trl.DPOTrainer` is used with a tiny preference set so it runs comfortably on a single T4 GPU. The resulting LoRA checkpoint (e.g., `smollm2-135m-dpo-math`) teaches the model to prefer correct, well‑structured math solutions over incorrect ones.
 
 ---
 
 ## Part D: Reinforcement Learning with GRPO
-**Model:** SmolLM2‑135M  
-📄 [Open in Colab](https://colab.research.google.com/drive/1_EcYElIFDKWLX_fh7tntUTRzadF2K1Ly?usp=sharing)
+- **Model:** SmolLM2‑135M  
+- 📄 [Open in Colab](https://colab.research.google.com/drive/1_EcYElIFDKWLX_fh7tntUTRzadF2K1Ly?usp=sharing)
 
-Train **SmolLM2‑135M** on **GSM8K** using **GRPO (Group Relative Policy Optimization)** with a simple reward function: +1 if the final numeric answer matches the gold answer, 0 otherwise, plus a small penalty for overly long completions. The model is loaded in 4‑bit, patched for GRPO, and fine‑tuned with multiple generations per prompt. The trained GRPO LoRA adapter (`SmolLM2-135M-GRPO-GSM8K`) improves step‑by‑step math reasoning accuracy.
+- Train **SmolLM2‑135M** on **GSM8K** using **GRPO (Group Relative Policy Optimization)** with a simple reward function: +1 if the final numeric answer matches the gold answer, 0 otherwise, plus a small penalty for overly long completions. The model is loaded in 4‑bit, patched for GRPO, and fine‑tuned with multiple generations per prompt. The trained GRPO LoRA adapter (`SmolLM2-135M-GRPO-GSM8K`) improves step‑by‑step math reasoning accuracy.
 
 ---
 
 ## Part E: Continued Pretraining from Checkpoint
-**Model:** SmolLM2‑135M  
-📄 [Open in Colab](https://colab.research.google.com/drive/14FOvUsyf25rq5MloOuJqjSkaJFcWumPm?usp=sharing)
+- **Model:** SmolLM2‑135M  
+- 📄 [Open in Colab](https://colab.research.google.com/drive/14FOvUsyf25rq5MloOuJqjSkaJFcWumPm?usp=sharing)
 
-Continue pretraining `unsloth/smollm2-135m` on a small monolingual corpus any language using a simple `text` column dataset. The model is trained with full‑parameter updates (not just LoRA) using an LM objective with packing and `max_seq_length ≈ 512`. The new checkpoint (e.g., `SmolLM2-135M-ContinuedPretraining-<Language>`) shows improved fluency and style control in the target language.
+- Continue pretraining `unsloth/smollm2-135m` on a small monolingual corpus any language using a simple `text` column dataset. The model is trained with full‑parameter updates (not just LoRA) using an LM objective with packing and `max_seq_length ≈ 512`. The new checkpoint (e.g., `SmolLM2-135M-ContinuedPretraining-<Language>`) shows improved fluency and style control in the target language.
 
 ---
 
