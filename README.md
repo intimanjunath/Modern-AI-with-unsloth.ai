@@ -56,4 +56,4 @@ Fine-tune **SmolLM2‑135M** with **Direct Preference Optimization (DPO)** on a 
 
 ---
 
-YouTube Demo explaning Youtube : https://youtu.be/GpBwMkLGuUs 
+YouTube Demo explaning Youtube : [YouTube](https://youtu.be/GpBwMkLGuUs)
