@@ -8,11 +8,14 @@ I have fine-tune a variety of open-weight LLMs using Unsloth AI for different sp
 - **Gemma 2 (9B)** – Human-like conversational AI  
   📄 [Colab Notebook](https://drive.google.com/file/d/1DBtPX4Jvc2sI_76sn3z1J4ZoURhyCdPG/view?usp=sharing)  
 - **Phi-3 (medium)** – Math-based reasoning & problem solving  
-  📄 [Colab Notebook](https://drive.google.com/file/d/13GHh5p_3D-o_M2EJ4SYgh28_la16ownR/view?usp=sharing)  
+  📄 [Colab Notebook](https://drive.google.com/file/d/13GHh5p_3D-o_M2EJ4SYgh28_la16ownR/view?usp=sharing)
+- In this notebook, SmolLM2‑135M is **fully fine-tuned** (all weights updated) on a small, task-specific dataset using Unsloth’s SFT pipeline. The data is formatted as instruction-style chat samples (system + user + assistant turns) for a chosen task such as **coding help** or **general chat**, then tokenized and packed into sequences of fixed length for efficient training. Training runs in 4‑bit with mixed precision on a single GPU, using cross-entropy loss over the assistant tokens. The result is a fully finetuned checkpoint that more reliably follows instructions and produces higher-quality responses for the selected task.
+
 
 ## Part B: Continued Pretraining on LORA parameter(smollm-135m)
 - **Purpose:** Adapt to handle Hindi text by unsupervised continuation of its language model pretraining.  
 - 📄 [Open in Colab](https://colab.research.google.com/drive/10eHHGvOuqaWK_RHngdQEYyPS4Bjg41OJ?usp=sharing)
+- This notebook repeats the same task and dataset as above, but uses **LoRA (Low-Rank Adapters)** instead of full-parameter finetuning for **parameter-efficient training**. Starting from the same SmolLM2‑135M base, only lightweight adapter matrices are trained on top of frozen backbone weights, dramatically reducing GPU memory and training time. The dataset uses the same chat-style format (instruction / response pairs) and can be adapted to coding, Q&A, or general conversation, with appropriate chat templates from Unsloth’s guide:  
 
 ---
 ## Part C: Reinforcement Learning with Preference Data (DPO)
